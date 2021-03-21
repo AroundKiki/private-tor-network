@@ -10,6 +10,7 @@ services:
   volumes:
     ## Needed to keep track of other nodes
     - ./tor:/tor
+  container_name: da1
  da2:
   image: antitree/private-tor
   #expose:
@@ -20,6 +21,7 @@ services:
   volumes:
     ## Needed to keep track of other nodes
     - ./tor:/tor
+  container_name: da2
  da3:
   image: antitree/private-tor
   #expose:
@@ -30,6 +32,7 @@ services:
   volumes:
     ## Needed to keep track of other nodes
     - ./tor:/tor
+  container_name: da3
  relay:
   image: antitree/private-tor
   #expose:
@@ -44,6 +47,7 @@ services:
     - da1
     - da2
     - da3
+  container_name: relay
  exit:
   image: antitree/private-tor
   #expose:
@@ -58,6 +62,7 @@ services:
     - da1
     - da2
     - da3
+  container_name: exit
  client:
   image: antitree/private-tor
   ports:
@@ -72,6 +77,7 @@ services:
     - da1
     - da2
     - da3
+  container_name: client
  hs:
   image: antitree/private-tor
   #expose:
@@ -91,9 +97,11 @@ services:
     - da3
   links:
     - web
+  container_name: hs
  web:
   image: nginx
   #expose:
   #  - "80"
+  container_name: web
   
 
