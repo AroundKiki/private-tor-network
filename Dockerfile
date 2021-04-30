@@ -43,6 +43,8 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install $build_deps $build_temps \
         init-system-helpers \
         pwgen && \
+    pip3 install --upgrade setuptools && \
+    python3 -m pip install --upgrade pip && \
     pip3 install stem flask
 
 RUN mkdir /src && \
