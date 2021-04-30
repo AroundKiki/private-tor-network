@@ -43,7 +43,9 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install $build_deps $build_temps \
         init-system-helpers \
         pwgen && \
-    mkdir /src && \
+    pip3 install stem flask
+
+RUN mkdir /src && \
     cd /src && \
     git clone https://git.torproject.org/tor.git && \
     cd tor && \
@@ -55,8 +57,6 @@ RUN apt-get update && \
     apt-get -y purge --auto-remove $build_temps && \
     apt-get clean && rm -r /var/lib/apt/lists/* && \
     rm -rf /src/*
-
-RUN pip3 install stem flask
 
 # Copy the base tor configuration file
 COPY ./config/torrc* /etc/tor/
