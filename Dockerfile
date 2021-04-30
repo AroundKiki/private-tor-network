@@ -13,8 +13,8 @@
 #   
 #   docker run --rm -it -e ROLE=DA antitree/tor-server /bin/bash
 
-FROM debian:jessie
-MAINTAINER Antitree antitree@protonmail.com
+FROM debian:buster
+MAINTAINER Cc zheming.cui@gmail.com
 
 # Sets which version of tor to use. See the Tor Projects git page for available tags
 # Examples:
