@@ -1,7 +1,7 @@
 version: '2'
 services:
  da1:
-  image: antitree/private-tor
+  image: cc/private-tor
   #expose:
   #  - "7000"
   #  - "9030"
@@ -12,7 +12,7 @@ services:
     - ./tor:/tor
   container_name: da1
  da2:
-  image: antitree/private-tor
+  image: cc/private-tor
   #expose:
   #  - "7000"
   #  - "9030"
@@ -23,7 +23,7 @@ services:
     - ./tor:/tor
   container_name: da2
  da3:
-  image: antitree/private-tor
+  image: cc/private-tor
   #expose:
   #  - "7000"
   #  - "9030"
@@ -34,7 +34,7 @@ services:
     - ./tor:/tor
   container_name: da3
  relay:
-  image: antitree/private-tor
+  image: cc/private-tor
   #expose:
   #  - "7000"
   #  - "9030"
@@ -49,7 +49,7 @@ services:
     - da3
   # container_name: relay
  exit:
-  image: antitree/private-tor
+  image: cc/private-tor
   #expose:
   #  - "7000"
   #  - "9030"
@@ -64,7 +64,7 @@ services:
     - da3
   # container_name: exit
  client:
-  image: antitree/private-tor
+  image: cc/private-tor
   ports:
     # Setups a listener on host machine
     - "9050:9050"
@@ -79,7 +79,7 @@ services:
     - da3
   # container_name: client
  hs:
-  image: antitree/private-tor
+  image: cc/private-tor
   #expose:
   #  - "80"
   environment:
