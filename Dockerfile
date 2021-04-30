@@ -39,7 +39,7 @@ RUN apt-get update && \
     build_temps="build-essential automake" && \ 
     build_deps="libssl-dev zlib1g-dev libevent-dev ca-certificates\
         dh-apparmor libseccomp-dev dh-systemd \
-        git" && \
+        git python3 python3-pip" && \
     DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install $build_deps $build_temps \
         init-system-helpers \
         pwgen && \
@@ -54,7 +54,8 @@ RUN apt-get update && \
     make install && \
     apt-get -y purge --auto-remove $build_temps && \
     apt-get clean && rm -r /var/lib/apt/lists/* && \
-    rm -rf /src/*
+    rm -rf /src/* && \
+    pip3 install stem flask
 
 # Copy the base tor configuration file
 COPY ./config/torrc* /etc/tor/
