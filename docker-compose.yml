@@ -105,7 +105,7 @@ services:
   #expose:
   #  - "80"
   # container_name: web
-dps:
+ dps:
   image: defreitas/dns-proxy-server
   hostname: dns.mageddo
   volumes:
