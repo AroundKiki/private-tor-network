@@ -1,6 +1,6 @@
-version: '2.4'
+version: '2'
 services:
- da:
+ da1:
   image: cc/private-tor
   #expose:
   #  - "7000"
@@ -10,30 +10,29 @@ services:
   volumes:
     ## Needed to keep track of other nodes
     - ./tor:/tor
-  scale: 3
-  # container_name: da1
-#  da2:
-#   image: cc/private-tor
-#   #expose:
-#   #  - "7000"
-#   #  - "9030"
-#   environment:
-#     ROLE: DA
-#   volumes:
-#     ## Needed to keep track of other nodes
-#     - ./tor:/tor
-#   container_name: da2
-#  da3:
-#   image: cc/private-tor
-#   #expose:
-#   #  - "7000"
-#   #  - "9030"
-#   environment:
-#     ROLE: DA
-#   volumes:
-#     ## Needed to keep track of other nodes
-#     - ./tor:/tor
-#   container_name: da3
+  container_name: da1
+ da2:
+  image: cc/private-tor
+  #expose:
+  #  - "7000"
+  #  - "9030"
+  environment:
+    ROLE: DA
+  volumes:
+    ## Needed to keep track of other nodes
+    - ./tor:/tor
+  container_name: da2
+ da3:
+  image: cc/private-tor
+  #expose:
+  #  - "7000"
+  #  - "9030"
+  environment:
+    ROLE: DA
+  volumes:
+    ## Needed to keep track of other nodes
+    - ./tor:/tor
+  container_name: da3
  relay:
   image: cc/private-tor
   #expose:
@@ -45,9 +44,10 @@ services:
     - ./tor:/tor
   depends_on:
     # Make sure the DA's are already up
-    - da
+    - da1
+    - da2
+    - da3
   # container_name: relay
-  scale: 3
  exit:
   image: cc/private-tor
   #expose:
@@ -59,9 +59,10 @@ services:
     - ./tor:/tor
   depends_on:
     # Make sure the DA's are already up
-    - da
+    - da1
+    - da2
+    - da3
   # container_name: exit
-  scale: 3
  client:
   image: cc/private-tor
   ports:
@@ -75,7 +76,9 @@ services:
   environment:
     ROLE: CLIENT
   depends_on: 
-    - da
+    - da1
+    - da2
+    - da3
   # container_name: client
  hs:
   image: cc/private-tor
@@ -91,7 +94,9 @@ services:
   volumes:
     - ./tor:/tor
   depends_on:
-    - da
+    - da1
+    - da2
+    - da3
   links:
     - web
   # container_name: hs
