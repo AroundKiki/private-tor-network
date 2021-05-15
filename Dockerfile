@@ -45,7 +45,7 @@ RUN apt-get update && \
         pwgen && \
     pip3 install --upgrade setuptools && \
     python3 -m pip install --upgrade pip && \
-    pip3 install stem flask
+    pip3 install stem flask flask_cors
 
 RUN mkdir /src && \
     cd /src && \
@@ -59,6 +59,8 @@ RUN mkdir /src && \
     apt-get -y purge --auto-remove $build_temps && \
     apt-get clean && rm -r /var/lib/apt/lists/* && \
     rm -rf /src/*
+
+RUN apt-get install tcpdump
 
 # Copy the base tor configuration file
 COPY ./config/torrc* /etc/tor/
