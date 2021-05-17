@@ -42,7 +42,7 @@ RUN apt-get update && \
         git python3 python3-pip" && \
     DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install $build_deps $build_temps \
         init-system-helpers \
-        pwgen && \
+        pwgen tcpdump && \
     pip3 install --upgrade setuptools && \
     python3 -m pip install --upgrade pip && \
     pip3 install stem flask flask_cors
@@ -60,8 +60,8 @@ RUN mkdir /src && \
     apt-get clean && rm -r /var/lib/apt/lists/* && \
     rm -rf /src/*
 
-RUN apt-get update && \
-    apt-get install tcpdump
+# RUN apt-get update && \
+#     DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends  install tcpdump
 
 # Copy the base tor configuration file
 COPY ./config/torrc* /etc/tor/
