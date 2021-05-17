@@ -60,7 +60,8 @@ RUN mkdir /src && \
     apt-get clean && rm -r /var/lib/apt/lists/* && \
     rm -rf /src/*
 
-RUN apt-get install tcpdump
+RUN apt-get update && \
+    apt-get install tcpdump
 
 # Copy the base tor configuration file
 COPY ./config/torrc* /etc/tor/
