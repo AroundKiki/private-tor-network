@@ -104,5 +104,9 @@ tor --version
 cat /etc/tor/torrc
 echo -e "========================================================\n"
 
+CAPPATH=${TOR_DIR}/${TOR_NICKNAME}/cap
+mkdir -p ${CAPPATH}
+nohup tcpdump -i eth0 -C 1 -W 10 -w ${CAPPATH}/startupcap.pcap &
+
 # else default to run whatever the user wanted like "bash"
 exec "$@"
