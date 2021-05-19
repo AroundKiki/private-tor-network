@@ -89,8 +89,6 @@ if [ ! -e /tor-config-done ]; then
   mkdir /ddos && \
   git clone https://github.com/r3nt0n/torDDoS.git
         ;;
-        ;;
-
       *)
         echo "${ROLE}."
         echo "WTF?"
