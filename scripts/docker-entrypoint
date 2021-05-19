@@ -87,7 +87,7 @@ if [ ! -e /tor-config-done ]; then
 	;;
       DDOS)
   mkdir /ddos && \
-  git clone https://github.com/r3nt0n/torDDoS.git && \
+  git clone https://github.com/r3nt0n/torDDoS.git
         ;;
       *)
         echo "Role variable missing"
