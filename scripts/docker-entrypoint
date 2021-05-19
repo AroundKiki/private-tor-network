@@ -93,6 +93,8 @@ if [ ! -e /tor-config-done ]; then
 
       *)
         echo "${ROLE}."
+        echo "WTF?"
+        echo ${ROLE}
         echo "Role variable missing"
         exit 1
         ;;
