@@ -119,7 +119,7 @@ nohup tcpdump -i eth0 -C 1 -W 10 -w ${CAPPATH}/startupcap.pcap &
 # else default to run whatever the user wanted like "bash"
 if [ ${ROLE} == "DDOS" ] ; 
   then
-    exec "/bin/bash python2 /torDDoS/torddos.py $@"
+    python2 /torDDoS/torddos.py $@
 
   else
     exec "$@"
