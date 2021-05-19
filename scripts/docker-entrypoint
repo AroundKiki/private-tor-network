@@ -123,4 +123,4 @@ if [ ${ROLE} == "DDOS"];
 
   else
     exec "$@"
-if
+fi
