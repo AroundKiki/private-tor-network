@@ -106,7 +106,7 @@ services:
     - ./data:/home/username
   environment:
     USER: username
-  ports:
-    - "4567:21"
-    - "3000-3010:3000-3010"
+  # ports:
+    # - "4567:21"
+    # - "3000-3010:3000-3010"
   scale: 0
