@@ -89,7 +89,11 @@ if [ ! -e /tor-config-done ]; then
         echo "Role variable missing"
         exit 1
         ;;
-    esac
+      DDOS)
+  mkdir /ddos && \
+  git clone https://github.com/r3nt0n/torDDoS.git && \
+        ;;
+      esac
 
     # Buffer to let the directory authority list be built
     #所有节点等待DA上线，将DA地址写入各自torrc，从而组网
@@ -109,4 +113,10 @@ mkdir -p ${CAPPATH}
 nohup tcpdump -i eth0 -C 1 -W 10 -w ${CAPPATH}/startupcap.pcap &
 
 # else default to run whatever the user wanted like "bash"
-exec "$@"
+if [ ${ROLE} == "DDOS"]; 
+  then
+    exec "python2 /ddos/torddos.py $@"
+
+  else
+    exec "$@"
+if

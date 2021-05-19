@@ -100,7 +100,7 @@ services:
   #expose:
   #  - "80"
   # container_name: web
- ftps_server:
+ ftp:
   image: mikatux/ftps-server
   volumes:
     - ./data:/home/username
@@ -110,3 +110,14 @@ services:
     # - "4567:21"
     # - "3000-3010:3000-3010"
   scale: 0
+ ddos:
+  image: cc/private-tor
+  environment:
+    ROLE: DDOS
+  volumes:
+    - ./tor:/tor
+  depends_on:
+    # Make sure the DA's are already up
+    - da
+  # container_name: exit
+  scale: 1

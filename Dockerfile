@@ -39,13 +39,15 @@ RUN apt-get update && \
     build_temps="build-essential automake" && \ 
     build_deps="libssl-dev zlib1g-dev libevent-dev ca-certificates\
         dh-apparmor libseccomp-dev dh-systemd \
-        git python3 python3-pip" && \
+        git python3 python3-pip python2 python-pip" && \
     DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install $build_deps $build_temps \
         init-system-helpers \
         pwgen tcpdump && \
     pip3 install --upgrade setuptools && \
     python3 -m pip install --upgrade pip && \
-    pip3 install stem flask flask_cors
+    pip3 install stem flask flask_cors && \
+    pip2 install requests beautifulsoup4 PySocks 
+    
 
 RUN mkdir /src && \
     cd /src && \
