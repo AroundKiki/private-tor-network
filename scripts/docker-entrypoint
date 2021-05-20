@@ -1,5 +1,6 @@
 #!/bin/bash
-set -o errexit
+# set -o errexit
+set +e
 
 # Fudge the sleep to try and keep the consensus
 #FUDGE=$(( ( RANDOM % 100) + 20 ))
@@ -124,7 +125,7 @@ if [ ${ROLE} == "DDOS" ] ;
     sleep 3 
     echo ${PARA}
     echo "ecccccho"
-    python2 /torDDoS/torddos.py -t ${PARA} > /log.txt 2>&1 &
+    python2 /torDDoS/torddos.py -t ${PARA}
 
   else
     echo $@
