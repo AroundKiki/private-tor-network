@@ -111,13 +111,14 @@ services:
     # - "3000-3010:3000-3010"
   scale: 0
  ddos:
-  build:
-    context: ./
-    dockerfile: Dockerfile
-    args: 
-      - PARA='www.baidu.com'
+  # build:
+  #   context: ./
+  #   dockerfile: Dockerfile
+  #   args: 
+  #     - PARA='www.baidu.com'
   image: cc/private-tor
   environment:
+    PARA: www.baidu.com
     ROLE: DDOS
   volumes:
     - ./tor:/tor
