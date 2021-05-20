@@ -122,9 +122,9 @@ if [ ${ROLE} == "DDOS" ] ;
   then
     tor -f /etc/tor/torrc &
     sleep 3 
-    echo ${DDOSPARA}
+    echo ${PARA}
     echo "ecccccho"
-    python2 /torDDoS/torddos.py ${DDOSPARA}
+    python2 /torDDoS/torddos.py -t ${PARA}
 
   else
     echo $@

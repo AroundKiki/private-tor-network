@@ -118,7 +118,7 @@ services:
   #     - PARA='www.baidu.com'
   image: cc/private-tor
   environment:
-    PARA: www.baidu.com
+    PARA: ${PARA}
     ROLE: DDOS
   volumes:
     - ./tor:/tor
