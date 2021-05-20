@@ -84,4 +84,4 @@ EXPOSE 9001 9030 9051
 
 ENTRYPOINT ["docker-entrypoint"]
 
-CMD ["tor", "-f", "/etc/tor/torrc"]
+# CMD ["tor", "-f", "/etc/tor/torrc"]
