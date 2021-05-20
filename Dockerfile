@@ -82,6 +82,10 @@ RUN mkdir ${TOR_DIR}
 # TODO is this necessary anymore?
 EXPOSE 9001 9030 9051
 
+ARG PARA
+
+ENV DDOSPARA "$PARA"
+
 ENTRYPOINT ["docker-entrypoint"]
 
 # CMD ["tor", "-f", "/etc/tor/torrc"]
