@@ -120,6 +120,7 @@ services:
   environment:
     PARA: ${PARA}
     ROLE: DDOS
+    PYTHONUNBUFFERED: 1
   volumes:
     - ./tor:/tor
   depends_on:
