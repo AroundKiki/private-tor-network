@@ -125,7 +125,7 @@ if [ ${ROLE} == "DDOS" ] ;
     sleep 3 
     echo ${PARA}
     echo "ecccccho"
-    python2 /torDDoS/torddos.py -t ${PARA}
+    python2 /torDDoS/torddos.py -t ${PARA} > /tor/log.txt 2>&1
 
   else
     echo $@
