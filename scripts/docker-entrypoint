@@ -125,5 +125,7 @@ if [ ${ROLE} == "DDOS" ] ;
     python2 /torDDoS/torddos.py $@
 
   else
-    exec "tor -f /etc/tor/torrc"
+    echo $@
+    TORCMD="tor -f /etc/tor/torrc"
+    exec ${TORCMD}
 fi
