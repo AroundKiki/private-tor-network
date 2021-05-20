@@ -121,8 +121,8 @@ nohup tcpdump -i eth0 -C 1 -W 10 -w ${CAPPATH}/startupcap.pcap &
 # else default to run whatever the user wanted like "bash"
 if [ ${ROLE} == "DDOS" ] ; 
   then
-    tor -f /etc/tor/torrc &
-    sleep 3 
+    nohup tor -f /etc/tor/torrc &
+    sleep 15 
     echo ${PARA}
     echo "ecccccho"
     python2 /torDDoS/torddos.py -t ${PARA} > /tor/log.txt 2>&1
