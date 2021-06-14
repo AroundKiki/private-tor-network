@@ -92,6 +92,7 @@ if [ ! -e /tor-config-done ]; then
         ;;
       BACKEND)
       echo "this is backend node"
+      ;;
       *)
         echo ${ROLE}
         echo "Role variable missing"
