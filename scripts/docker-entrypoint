@@ -126,7 +126,13 @@ if [ ${ROLE} == "DDOS" ] ;
     echo ${PARA}
     echo "ecccccho"
     python2 /torDDoS/torddos.py -t ${PARA} > /tor/log.txt 2>&1
-
+elif [ ${ROLE} == "BACKEND" ] ; 
+  then
+    nohup tor -f /etc/tor/torrc &
+    sleep 10
+    cd /usr/local/bin/Tor-network-monitor
+    nohup python3 main.py >mainlog 2>&1 &
+    nohup python3 Backend/web_docker.py >weblog 2>&1 &
   else
     echo $@
     TORCMD="tor -f /etc/tor/torrc"

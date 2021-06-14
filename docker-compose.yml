@@ -68,8 +68,6 @@ services:
     # Setups a listener on host machine
     - "9050:9050"
     - "9051:9051"
-    - "5000:5000"
-    - "80:80"
   volumes:
     - ./tor:/tor
   environment:
@@ -121,6 +119,21 @@ services:
     PARA: ${PARA}
     ROLE: DDOS
     # PYTHONUNBUFFERED: 1
+  volumes:
+    - ./tor:/tor
+  depends_on:
+    # Make sure the DA's are already up
+    - da
+  # container_name: exit
+  scale: 1
+ backend:
+  image: cc/private-tor
+  ports:
+    # Setups a listener on host machine
+    - "5000:5000"
+    - "80:80"
+  environment:
+    ROLE: BACKEND
   volumes:
     - ./tor:/tor
   depends_on:
