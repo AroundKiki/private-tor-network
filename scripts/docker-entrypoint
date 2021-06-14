@@ -93,6 +93,7 @@ if [ ! -e /tor-config-done ]; then
       BACKEND)
       echo "this is backend node"
       ;;
+
       *)
         echo ${ROLE}
         echo "Role variable missing"
@@ -133,7 +134,8 @@ elif [ ${ROLE} == "BACKEND" ] ;
     sleep 10
     cd /usr/local/bin/Tor-network-monitor
     nohup python3 main.py >mainlog 2>&1 &
-    nohup python3 Backend/web_docker.py >weblog 2>&1 &
+    TORCMD="python3 Backend/web_docker.py"
+    exec ${TORCMD}
   else
     echo $@
     TORCMD="tor -f /etc/tor/torrc"
