@@ -90,9 +90,9 @@ if [ ! -e /tor-config-done ]; then
   cd / && \
   git clone https://github.com/r3nt0n/torDDoS.git
         ;;
+      BACKEND)
+      echo "this is backend node"
       *)
-        echo "${ROLE}."
-        echo "WTF?"
         echo ${ROLE}
         echo "Role variable missing"
         exit 1
