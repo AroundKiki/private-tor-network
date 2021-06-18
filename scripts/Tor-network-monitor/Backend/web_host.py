@@ -13,6 +13,8 @@ CORS(app)
 def resize():
     print(request.form)
     r = requests.get('https://127.0.0.1:5000/tor-monitor/init',)
+    # TODO: 将表单转换为命令
+
     return [r.status_code, r.text]
     # post数量
 

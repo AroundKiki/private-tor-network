@@ -2,43 +2,15 @@ version: '2.4'
 services:
  da:
   image: cc/private-tor
-  #expose:
-  #  - "7000"
-  #  - "9030"
   environment:
     ROLE: DA
   volumes:
     ## Needed to keep track of other nodes
     - ./tor:/tor
+  # 可以使用scale调整，默认3
   scale: 3
-  # container_name: da1
-#  da2:
-#   image: cc/private-tor
-#   #expose:
-#   #  - "7000"
-#   #  - "9030"
-#   environment:
-#     ROLE: DA
-#   volumes:
-#     ## Needed to keep track of other nodes
-#     - ./tor:/tor
-#   container_name: da2
-#  da3:
-#   image: cc/private-tor
-#   #expose:
-#   #  - "7000"
-#   #  - "9030"
-#   environment:
-#     ROLE: DA
-#   volumes:
-#     ## Needed to keep track of other nodes
-#     - ./tor:/tor
-#   container_name: da3
  relay:
   image: cc/private-tor
-  #expose:
-  #  - "7000"
-  #  - "9030"
   environment:
     ROLE: RELAY
   volumes:
@@ -50,9 +22,6 @@ services:
   scale: 3
  exit:
   image: cc/private-tor
-  #expose:
-  #  - "7000"
-  #  - "9030"
   environment:
     ROLE: EXIT
   volumes:
@@ -77,13 +46,10 @@ services:
   # container_name: client
  hs:
   image: cc/private-tor
-  #expose:
-  #  - "80"
   environment:
     ROLE: HS
-    # This will create a hidden service that points to
-    # the service "web" which is runing nginx. You can 
-    # change this to whatever ip or hostname you want
+    # 将在hs节点的TOR_HS_PORT代理TOR_HS_ADDR:TOR_HS_PORT提供的服务
+    #TOR_HS_ADDR可以是域名、IP或者是本文件中定义的service名，docker会将service名解析为ip，作用等同为域名。同service如有多个实例将随机访问一个
     TOR_HS_PORT: "80"
     TOR_HS_ADDR: "web"
   volumes:
@@ -92,12 +58,9 @@ services:
     - da
   links:
     - web
-  # container_name: hs
  web:
   image: nginx
-  #expose:
-  #  - "80"
-  # container_name: web
+  # 普通ftp容器
  ftp:
   image: mikatux/ftps-server
   volumes:
@@ -109,11 +72,6 @@ services:
     # - "3000-3010:3000-3010"
   scale: 0
  ddos:
-  # build:
-  #   context: ./
-  #   dockerfile: Dockerfile
-  #   args: 
-  #     - PARA='www.baidu.com'
   image: cc/private-tor
   environment:
     PARA: ${PARA}
@@ -126,6 +84,8 @@ services:
     - da
   # container_name: exit
   scale: 1
+  # 
+  # backend为后端所需程序所在的容器
  backend:
   image: cc/private-tor
   ports:
